@@ -3,14 +3,24 @@ package com.onedudedesign.sevenminuteworkout
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_excercise.*
 
 class ExcerciseActivity : AppCompatActivity() {
 
+    //timer tick val
+    private val tickValue = 1000L
+
     //set variables for the rest timer
     private var restTimer: CountDownTimer? = null
     private var restProgress = 0
+    private val restDuration = 10000L
+
+    //set the variables for the excercise timer
+    private var exerciseTimer: CountDownTimer? = null
+    private var exerciseProgress = 0
+    private val exerciseDuration = 30000L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +34,15 @@ class ExcerciseActivity : AppCompatActivity() {
         setupRestView()
     }
 
-    //when the activity is destroyed cancel the timer and reset the restProgress
+    //when the activity is destroyed cancel the timers and reset the progress
     override fun onDestroy() {
         if(restTimer != null){
             restTimer!!.cancel()
             restProgress = 0
+        }
+        if (exerciseTimer != null){
+            exerciseTimer!!.cancel()
+            exerciseProgress = 0
         }
         super.onDestroy()
     }
@@ -37,16 +51,33 @@ class ExcerciseActivity : AppCompatActivity() {
     private fun setRestProgressBar(){
         //tell the progressbar what its progress is to force the segment removal in the drawables
         progressbar.progress = restProgress
-        restTimer = object: CountDownTimer(10000,1000){
+        restTimer = object: CountDownTimer(restDuration,tickValue){
             override fun onTick(millisUntilFinished: Long) {
                 restProgress++
-                progressbar.progress = 10 - restProgress
-                tvtimer.text = (10 - restProgress).toString()
+                progressbar.progress = (restDuration/1000).toInt() - restProgress
+                tvtimer.text = ((restDuration/1000).toInt() - restProgress).toString()
+            }
+
+            override fun onFinish() {
+                setupExerciseView()
+            }
+        }.start()
+    }
+
+    //setup the exercise progress bar
+    private fun setExerciseProgressBar(){
+        //tell the progressbar what its progress is to force the segment removal in the drawables
+        exerciseprogressbar.progress = exerciseProgress
+        exerciseTimer = object: CountDownTimer(exerciseDuration,tickValue){
+            override fun onTick(millisUntilFinished: Long) {
+                exerciseProgress++
+                exerciseprogressbar.progress = (exerciseDuration/1000).toInt() - exerciseProgress
+                exercisetvtimer.text = ((exerciseDuration/1000).toInt() - exerciseProgress).toString()
             }
 
             override fun onFinish() {
                 Toast.makeText(this@ExcerciseActivity,
-                    "Here now we will start the excercise",Toast.LENGTH_SHORT).show()
+                    "Now you are sweating!",Toast.LENGTH_SHORT).show()
             }
         }.start()
     }
@@ -59,6 +90,22 @@ class ExcerciseActivity : AppCompatActivity() {
             restProgress = 0
         }
 
+        llexerciseview.visibility=View.GONE
+        llRestView.visibility=View.VISIBLE
+
         setRestProgressBar()
+    }
+
+    //called when rest finishes, switches the layout and starts the exercise
+    private fun setupExerciseView(){
+        if (exerciseTimer != null) {
+            exerciseTimer!!.cancel()
+            exerciseProgress = 0
+        }
+
+        llRestView.visibility = View.GONE
+        llexerciseview.visibility = View.VISIBLE
+
+        setExerciseProgressBar()
     }
 }

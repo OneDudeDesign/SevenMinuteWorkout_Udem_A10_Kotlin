@@ -10,4 +10,5 @@
     <dimen name="excercize_activity_fl_margin">10dp</dimen>
     <dimen name="exAct_llinner_size">60dp</dimen>
     <dimen name="exAct_tvTimer_textsize">25sp</dimen>
+    <dimen name="timer_header_textsize">22sp</dimen>
 </resources>

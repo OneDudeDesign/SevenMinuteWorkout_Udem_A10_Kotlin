@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="@string/get_ready_for"
             android:textColor="@color/colorAccent"
-            android:textSize="22sp"
+            android:textSize="@dimen/timer_header_textsize"
             android:textStyle="bold" />
 
         <FrameLayout
@@ -59,6 +59,66 @@
 
                 <TextView
                     android:id="@+id/tvtimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/exAct_tvTimer_textsize"
+                    android:textStyle="bold"
+                    tools:text="@string/exAct_tvTimer_toolText" />
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llexerciseview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_excercise_activity"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/exercise_name_generic"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/timer_header_textsize"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:layout_width="@dimen/excercise_activity_frame_layout_size"
+            android:layout_height="@dimen/excercise_activity_frame_layout_size"
+            android:layout_marginTop="@dimen/excercize_activity_fl_margin"
+            android:background="@drawable/item_circular_color_accent_border">
+
+            <ProgressBar
+                android:id="@+id/exerciseprogressbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="@dimen/excercise_activity_frame_layout_size"
+                android:layout_height="@dimen/excercise_activity_frame_layout_size"
+                android:layout_gravity="center"
+                android:background="@drawable/circular_progress_gray"
+                android:indeterminate="false"
+                android:max="30"
+                android:progress="100"
+                android:progressDrawable="@drawable/circular_progress_bar"
+                android:rotation="-90" />
+
+            <LinearLayout
+                android:layout_width="@dimen/exAct_llinner_size"
+                android:layout_height="@dimen/exAct_llinner_size"
+                android:layout_gravity="center"
+                android:background="@drawable/item_circular_color_accent_background"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/exercisetvtimer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
