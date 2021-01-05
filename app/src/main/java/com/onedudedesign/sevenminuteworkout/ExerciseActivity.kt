@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_excercise.*
 
-class ExcerciseActivity : AppCompatActivity() {
+class ExerciseActivity : AppCompatActivity() {
 
     //timer tick val
     private val tickValue = 1000L
@@ -22,6 +22,9 @@ class ExcerciseActivity : AppCompatActivity() {
     private var exerciseProgress = 0
     private val exerciseDuration = 30000L
 
+    private var exerciseList: ArrayList<ExerciseModel>? = null
+    private var currentExercisePosition = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_excercise)
@@ -31,7 +34,10 @@ class ExcerciseActivity : AppCompatActivity() {
         toolbar_excercise_activity.setNavigationOnClickListener {
             onBackPressed()
         }
+        //start the restview and counter
         setupRestView()
+
+        exerciseList = Constants.defaultExerciseList()
     }
 
     //when the activity is destroyed cancel the timers and reset the progress
@@ -59,6 +65,7 @@ class ExcerciseActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
+                currentExercisePosition++
                 setupExerciseView()
             }
         }.start()
@@ -76,8 +83,16 @@ class ExcerciseActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                Toast.makeText(this@ExcerciseActivity,
-                    "Now you are sweating!",Toast.LENGTH_SHORT).show()
+
+                if (currentExercisePosition < exerciseList!!.size -1){
+                    setupRestView()
+                } else {
+                    Toast.makeText(this@ExerciseActivity,
+                        "congratulations you have completed the Seven Minute Workout!!",
+                        Toast.LENGTH_SHORT).show()
+
+                }
+
             }
         }.start()
     }
@@ -107,5 +122,8 @@ class ExcerciseActivity : AppCompatActivity() {
         llexerciseview.visibility = View.VISIBLE
 
         setExerciseProgressBar()
+
+        ivImage.setImageResource(exerciseList!![currentExercisePosition].getImage())
+        tvExerciseName.text = exerciseList!![currentExercisePosition].getName()
     }
 }
