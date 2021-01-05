@@ -5,5 +5,5 @@
     <dimen name="start_button_size">150dp</dimen>
     <dimen name="start_button_margin_top">20dp</dimen>
     <dimen name="start_button_label_textsize">22sp</dimen>
-    <dimen name="start_button_accent_border_stroke">5dp</dimen>
+    <dimen name="start_button_accent_border_stroke">9dp</dimen>
 </resources>
