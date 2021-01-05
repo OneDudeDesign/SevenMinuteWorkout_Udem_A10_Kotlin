@@ -1,5 +1,6 @@
 package com.onedudedesign.sevenminuteworkout
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -10,7 +11,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        llStart.setOnClickListener { Toast.makeText(this, "Here we will start " +
-                "the excercise",Toast.LENGTH_SHORT).show() }
+        llStart.setOnClickListener {
+            val intent = Intent(this, ExcerciseActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
