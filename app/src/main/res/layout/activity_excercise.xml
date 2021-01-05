@@ -120,6 +120,7 @@
             android:layout_width="@dimen/excercise_activity_frame_layout_size"
             android:layout_height="@dimen/excercise_activity_frame_layout_size"
             android:layout_marginTop="@dimen/excercize_activity_fl_margin"
+            android:layout_marginBottom="@dimen/std_margin_top"
             android:background="@drawable/item_circular_color_accent_border">
 
             <ProgressBar
