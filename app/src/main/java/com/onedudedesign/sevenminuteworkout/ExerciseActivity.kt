@@ -15,12 +15,12 @@ class ExerciseActivity : AppCompatActivity() {
     //set variables for the rest timer
     private var restTimer: CountDownTimer? = null
     private var restProgress = 0
-    private val restDuration = 10000L
+    private val restDuration = 3000L
 
     //set the variables for the excercise timer
     private var exerciseTimer: CountDownTimer? = null
     private var exerciseProgress = 0
-    private val exerciseDuration = 30000L
+    private val exerciseDuration = 3000L
 
     private var exerciseList: ArrayList<ExerciseModel>? = null
     private var currentExercisePosition = -1
@@ -34,10 +34,11 @@ class ExerciseActivity : AppCompatActivity() {
         toolbar_excercise_activity.setNavigationOnClickListener {
             onBackPressed()
         }
-        //start the restview and counter
-        setupRestView()
 
         exerciseList = Constants.defaultExerciseList()
+
+        //start the restview and counter
+        setupRestView()
     }
 
     //when the activity is destroyed cancel the timers and reset the progress
@@ -65,7 +66,7 @@ class ExerciseActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                currentExercisePosition++
+                //currentExercisePosition++
                 setupExerciseView()
             }
         }.start()
@@ -107,6 +108,8 @@ class ExerciseActivity : AppCompatActivity() {
 
         llexerciseview.visibility=View.GONE
         llRestView.visibility=View.VISIBLE
+        currentExercisePosition++
+        tvRestExerciseName.text = exerciseList!![currentExercisePosition].getName()
 
         setRestProgressBar()
     }
@@ -121,9 +124,11 @@ class ExerciseActivity : AppCompatActivity() {
         llRestView.visibility = View.GONE
         llexerciseview.visibility = View.VISIBLE
 
-        setExerciseProgressBar()
-
         ivImage.setImageResource(exerciseList!![currentExercisePosition].getImage())
         tvExerciseName.text = exerciseList!![currentExercisePosition].getName()
+
+        setExerciseProgressBar()
+
+
     }
 }

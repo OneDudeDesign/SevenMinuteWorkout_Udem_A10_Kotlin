@@ -71,6 +71,21 @@
 
         </FrameLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/std_margin_top"
+            android:text="@string/upcoming_exercise" />
+
+        <TextView
+            android:id="@+id/tvRestExerciseName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/std_margin_top"
+            android:textSize="@dimen/tvRestExerciseName_text_size"
+            android:textStyle="bold"
+            tools:text="Excercise Name" />
+
 
     </LinearLayout>
 

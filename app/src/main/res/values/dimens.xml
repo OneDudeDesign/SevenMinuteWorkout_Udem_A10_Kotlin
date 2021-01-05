@@ -11,4 +11,6 @@
     <dimen name="exAct_llinner_size">60dp</dimen>
     <dimen name="exAct_tvTimer_textsize">25sp</dimen>
     <dimen name="timer_header_textsize">22sp</dimen>
+    <dimen name="std_margin_top">10dp</dimen>
+    <dimen name="tvRestExerciseName_text_size">24sp</dimen>
 </resources>
