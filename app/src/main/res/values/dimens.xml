@@ -13,4 +13,10 @@
     <dimen name="timer_header_textsize">22sp</dimen>
     <dimen name="std_margin_top">10dp</dimen>
     <dimen name="tvRestExerciseName_text_size">24sp</dimen>
+    <dimen name="recyclerview_margin_small">5dp</dimen>
+    <dimen name="item_exercise_status_tv_w_h">25dp</dimen>
+    <dimen name="item_exercise_status_tv_margin">1dp</dimen>
+    <dimen name="item_exercise_item_textsize">14sp</dimen>
+    <dimen name="item_exercise_status_padding">3dp</dimen>
+    <dimen name="exercise_activity_fl_margin_large">35dp</dimen>
 </resources>
