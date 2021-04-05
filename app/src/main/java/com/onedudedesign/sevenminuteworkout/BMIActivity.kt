@@ -31,16 +31,31 @@ class BMIActivity : AppCompatActivity() {
         }
 
         btnCalculateUnits.setOnClickListener {
-            if (validateMetricUnits()){
-                val heightValue : Float = etMetricUnitHeight.text.toString().toFloat()/100
-                val weightValue : Float = etMetricUnitWeight.text.toString().toFloat()
+            if (currentVisibleView == METRIC_UNITS_VIEW) {
+                if (validateMetricUnits()) {
+                    val heightValue: Float = etMetricUnitHeight.text.toString().toFloat() / 100
+                    val weightValue: Float = etMetricUnitWeight.text.toString().toFloat()
 
-                val bmi = weightValue / (heightValue*heightValue)
+                    val bmi = weightValue / (heightValue * heightValue)
 
-                displayBmiResult(bmi)
-            }
-            else {
-                Toast.makeText(this,"Please enter valid values.",Toast.LENGTH_SHORT).show()
+                    displayBmiResult(bmi)
+                } else {
+                    Toast.makeText(this, "Please enter valid values.", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                if (validateUSUnits()) {
+                    val usHeightFeet: String = etUsUnitHeightFeet.text.toString()
+                    val usHeightInch: String = etUsUnitHeightInch.text.toString()
+                    val usWeight: Float = etUsUnitWeight.text.toString().toFloat()
+
+                    val heightValue = (usHeightFeet.toFloat()*12) + usHeightInch.toFloat()
+
+                    val bmi = (usWeight *703) / (heightValue * heightValue)
+                    displayBmiResult(bmi)
+
+                } else {
+                    Toast.makeText(this, "Please enter valid values.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -141,6 +156,20 @@ class BMIActivity : AppCompatActivity() {
         if(etMetricUnitHeight.text.toString().isEmpty()){
             isValid = false
         } else if (etMetricUnitWeight.text.toString().isEmpty()) {
+            isValid = false
+        }
+
+        return isValid
+    }
+
+    private fun validateUSUnits(): Boolean{
+        var isValid = true
+
+        if(etUsUnitWeight.text.toString().isEmpty()){
+            isValid = false
+        } else if (etUsUnitHeightFeet.text.toString().isEmpty()) {
+            isValid = false
+        } else if (etUsUnitHeightInch.text.toString().isEmpty()){
             isValid = false
         }
 

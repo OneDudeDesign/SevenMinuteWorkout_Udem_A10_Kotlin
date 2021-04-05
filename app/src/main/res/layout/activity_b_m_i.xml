@@ -58,9 +58,6 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <!--TODO(Step 1 : Designing the US UNITS view. And also update some design i.e Add the MetricUnitsView in one linear layout and USUnitsView in another.)-->
-        <!--START-->
-
         <LinearLayout
             android:id="@+id/llMetricUnitsView"
             android:layout_width="match_parent"
